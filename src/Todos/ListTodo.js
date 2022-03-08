@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ListTodo.scss";
+import { toast } from "react-toastify";
 const ListTodo = () => {
   const [todo, setTodo] = useState([
     { id: "todo1", title: "Gym" },
@@ -14,7 +15,7 @@ const ListTodo = () => {
   const handleClickAdd = (e) => {
     // console.log("Click", e.target.value);
     if (!inputvalue) {
-      alert("Emty value");
+      toast.error("Emty value");
     } else {
       let newTodo = {
         id: Math.floor(Math.random() * 10000),
@@ -22,6 +23,7 @@ const ListTodo = () => {
       };
       setTodo([...todo, newTodo]);
       setInputValue("");
+      toast.success("Add success!");
     }
   };
 
@@ -33,6 +35,7 @@ const ListTodo = () => {
     let currentTodo = [...todo];
     currentTodo = currentTodo.filter((item) => item.id !== id);
     setTodo(currentTodo);
+    toast.success("Delete success");
   };
 
   const handleEdit = (id, title) => {
@@ -50,6 +53,7 @@ const ListTodo = () => {
     });
     setTodo(newTodo);
     setEdit(!edit);
+    toast.success("Update success");
   };
   const changeInputUpdate = (e) => {
     setInputUpdate(e.target.value);
