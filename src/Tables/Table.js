@@ -13,8 +13,14 @@ const Table = () => {
     // setTimeout( () = {}, 3000)
     try {
       async function fetchData() {
+        const today = moment().startOf("day").toISOString(true);
+        const fromDay = moment()
+          .startOf("day")
+          .subtract(31, "days")
+          .toISOString(true);
+
         let res = await axios.get(
-          "https://api.covid19api.com/country/vietnam?from=2022-02-11T00%3A00%3A00Z&to=2022-03-11T00%3A00%3A00Z"
+          `https://api.covid19api.com/country/vietnam?from=${fromDay}&to=${today}`
         );
         let data = res && res.data ? res.data : [];
         if (data && data.length > 0) {
@@ -27,7 +33,6 @@ const Table = () => {
         setDatas(data);
         setLoading(true);
         setIsError(false);
-        console.log(res.data);
       }
       fetchData();
     } catch (e) {
@@ -38,6 +43,7 @@ const Table = () => {
 
   return (
     <div className="table">
+      <p>Hi! This is list Table Covid</p>
       <table>
         <thead>
           <tr>
