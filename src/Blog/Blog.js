@@ -27,23 +27,33 @@ const Blog = () => {
   }, []);
 
   return (
-    <div className="blog">
-      {dataBlog &&
-        dataBlog.length > 0 &&
-        dataBlog.map((item) => {
-          return (
-            <div className="blog_item">
-              <div className="title">Title: {item.title}</div>
-              <div className="content">Content: {item.body}</div>
-              <button type="button">
-                <Link to={`/blog/${item.id}`} className="btn">
-                  View Detail
-                </Link>
-              </button>
-            </div>
-          );
-        })}
-    </div>
+    <>
+      <div className="btn_add_new">
+        {" "}
+        <button>
+          <Link to="/addblog" className="btn_add">
+            + Add new blog
+          </Link>
+        </button>
+      </div>
+      <div className="blog">
+        {dataBlog &&
+          dataBlog.length > 0 &&
+          dataBlog.map((item) => {
+            return (
+              <div className="blog_item">
+                <div className="title">Title: {item.title}</div>
+                <div className="content">Content: {item.body}</div>
+                <button type="button">
+                  <Link to={`/blog/${item.id}`} className="btn">
+                    View Detail
+                  </Link>
+                </button>
+              </div>
+            );
+          })}
+      </div>
+    </>
   );
 };
 
